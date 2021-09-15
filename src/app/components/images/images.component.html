@@ -1,6 +1,15 @@
 <main>
     <header>
-        <input type="file" (change)="onChange($event)">
+        <div>Single</div>
+        <br>
+        <input type="file" (change)="onChangeSingle($event)">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div>Multiple</div>
+        <br>
+        <input type="file" (change)="onChangeMultiple($event)" multiple>
     </header>
-    <img src="https://aa-images-s3.s3.us-east-2.amazonaws.com/photo-1.jpg" alt="">
 </main>
