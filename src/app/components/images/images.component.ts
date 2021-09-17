@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./images.component.scss']
 })
 export class ImagesComponent implements OnInit {
-  file: File[] = null as any;
+  file: File = null as any;
+  files: File[] = null as any;
 
   constructor(
     private http: HttpClient,
@@ -33,6 +34,23 @@ export class ImagesComponent implements OnInit {
   }
 
   onChangeMultiple(e: any) {
-    console.log(e.target);
+    this.files = e.target.files;
+    
+    console.log(this.files);
+
+    const filesForm = new FormData();
+
+    for(let i = 0; i < this.files.length; i++) {
+      filesForm.append('files', this.files[i]);
+    }
+
+    filesForm.append('email', 'a@a.com');
+    filesForm.append('username', 'user-1');
+
+    this.http.post('http://localhost:3000/images/multiple', filesForm).subscribe(res => {
+      console.log('test1', res);
+    }, err => {
+      console.log('test2', err);
+    })
   }
 }
